@@ -1,0 +1,45 @@
+<html>
+<head>
+<script language="JavaScript"> 
+//-----------------------------------------
+//The function calculates f(z) = z*z + c
+//and produces a Julia set
+//Written by Won You, based on code by Geiss
+//-----------------------------------------
+function drawJulia()
+{
+
+  //Randomize the level of detail
+  var zoom=Math.round(Math.random()*(20-1)+1);
+
+  for(var i = 0; i<30; i++){
+    for(var j = 0; j<100; j++) {
+      var cr = 0.05 * (j-40);  //the real part of the complex number
+      var ci = 0.077 * (i-15); //the imaginary part of the complex number
+      var zr=0,zi=0;
+	  for(n = 0; n <= zoom; n++) {
+	        zr = cr*cr -ci*ci + 0.4;
+		zi = 2*cr*ci -0.4;
+		cr = zr;
+		ci = zi;
+	  }
+       
+      if((zr*zr + zi*zi) < zoom) document.write("*");
+      else document.write("-");
+
+    }
+	document.write("<BR>");
+  }
+
+  document.write("<a href='#' onClick='history.go(0)'>Regenerate</a>");
+}
+
+</script>
+</head>
+<body bgcolor="white" text="black" onload="drawJulia();">
+
+
+
+
+</body>  
+</html>
